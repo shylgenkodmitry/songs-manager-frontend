@@ -16,48 +16,46 @@
  */
 
 import {
-  LOAD_REPOS,
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS_ERROR,
+  LOAD_SONGS,
+  LOAD_SONGS_SUCCESS,
+  LOAD_SONGS_ERROR,
 } from './constants';
 
 /**
- * Load the repositories, this action starts the request saga
+ * Load the songs, this action starts the request saga
  *
- * @return {object} An action object with a type of LOAD_REPOS
+ * @return {object} An action object with a type of LOAD_SONGS
  */
-export function loadRepos() {
+export function loadSongs() {
   return {
-    type: LOAD_REPOS,
+    type: LOAD_SONGS,
   };
 }
 
 /**
- * Dispatched when the repositories are loaded by the request saga
+ * Dispatched when the songs are loaded by the request saga
  *
- * @param  {array} repos The repository data
- * @param  {string} username The current username
+ * @param  {array} songs The songs data
  *
- * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
+ * @return {object}      An action object with a type of LOAD_SONGS_SUCCESS passing the songs
  */
-export function reposLoaded(repos, username) {
+export function songsLoaded(songs) {
   return {
-    type: LOAD_REPOS_SUCCESS,
-    repos,
-    username,
+    type: LOAD_SONGS_SUCCESS,
+    songs,
   };
 }
 
 /**
- * Dispatched when loading the repositories fails
+ * Dispatched when loading the songs fails
  *
  * @param  {object} error The error
  *
- * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
+ * @return {object}       An action object with a type of LOAD_SONGS_ERROR passing the error
  */
-export function repoLoadingError(error) {
+export function songsLoadingError(error) {
   return {
-    type: LOAD_REPOS_ERROR,
+    type: LOAD_SONGS_ERROR,
     error,
   };
 }
