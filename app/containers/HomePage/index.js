@@ -16,7 +16,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { makeSelectSongs, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 import H2 from 'components/H2';
-import SongsList from 'components/SongsList';
+import SongsTable from 'components/SongsTable';
 import CenteredSection from './CenteredSection';
 import Section from './Section';
 import messages from './messages';
@@ -34,7 +34,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
   render() {
     const { loading, error, songs } = this.props;
-    const songsListProps = {
+    const songsTableProps = {
       loading,
       error,
       songs,
@@ -59,7 +59,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             <H2>
               <FormattedMessage {...messages.songsHeader} />
             </H2>
-            <SongsList {...songsListProps} />
+            <SongsTable {...songsTableProps} />
           </Section>
         </div>
       </article>
