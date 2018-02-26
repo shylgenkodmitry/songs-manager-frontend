@@ -1,7 +1,6 @@
 /*
- * HomePage
+ * Playlists page
  *
- * This is the first thing users see of our App, at the '/' route
  */
 
 import React from 'react';
@@ -14,50 +13,47 @@ import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import { makeSelectSongs, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
+import { makeSelectPlaylists, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 import H2 from 'components/H2';
-import SongsTable from 'components/SongsTable';
+import PlaylistsTable from 'components/PlaylistsTable';
 import CenteredSection from './CenteredSection';
 import Section from './Section';
 import messages from './messages';
-import { loadSongs } from '../App/actions';
+import { loadPlaylists } from '../App/actions';
 import reducer from './reducer';
 import saga from './saga';
 
-export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class PlaylistsPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
-    this.props.loadSongs();
+    this.props.loadPlaylists();
   }
 
   render() {
-    const { loading, error, songs } = this.props;
-    const songsTableProps = {
+    const { loading, error, playlists } = this.props;
+    const playlistsTableProps = {
       loading,
       error,
-      songs,
+      playlists,
     };
 
     return (
       <article>
         <Helmet>
-          <title>Enjoy Songs</title>
-          <meta name="description" content="Songs Manager" />
+          <title>Playlists</title>
+          <meta name="description" content="You can edit playlists" />
         </Helmet>
         <div>
           <CenteredSection>
             <H2>
-              <FormattedMessage {...messages.enjoySongsHeader} />
+              <FormattedMessage {...messages.playlistsHeader} />
             </H2>
             <p>
-              <FormattedMessage {...messages.enjoySongsMessage} />
+              <FormattedMessage {...messages.playlistsMessage} />
             </p>
           </CenteredSection>
           <Section>
-            <H2>
-              <FormattedMessage {...messages.songsHeader} />
-            </H2>
-            <SongsTable {...songsTableProps} />
+            <PlaylistsTable {...playlistsTableProps} />
           </Section>
         </div>
       </article>
@@ -65,38 +61,38 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   }
 }
 
-HomePage.propTypes = {
+PlaylistsPage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool,
   ]),
-  songs: PropTypes.oneOfType([
+  playlists: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.bool,
   ]),
-  loadSongs: PropTypes.func,
+  loadPlaylists: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    loadSongs: () => dispatch(loadSongs()),
+    loadPlaylists: () => dispatch(loadPlaylists()),
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  songs: makeSelectSongs(),
+  playlists: makeSelectPlaylists(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'home', reducer });
-const withSaga = injectSaga({ key: 'home', saga });
+const withReducer = injectReducer({ key: 'playlists', reducer });
+const withSaga = injectSaga({ key: 'playlists', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(HomePage);
+)(PlaylistsPage);

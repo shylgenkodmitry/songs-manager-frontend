@@ -19,6 +19,9 @@ import {
   LOAD_SONGS,
   LOAD_SONGS_SUCCESS,
   LOAD_SONGS_ERROR,
+  LOAD_PLAYLISTS,
+  LOAD_PLAYLISTS_SUCCESS,
+  LOAD_PLAYLISTS_ERROR,
 } from './constants';
 
 /**
@@ -56,6 +59,46 @@ export function songsLoaded(songs) {
 export function songsLoadingError(error) {
   return {
     type: LOAD_SONGS_ERROR,
+    error,
+  };
+}
+
+//===============
+/**
+ * Load the playlists, this action starts the request saga
+ *
+ * @return {object} An action object with a type of LOAD_PLAYLISTS
+ */
+export function loadPlaylists() {
+  return {
+    type: LOAD_PLAYLISTS,
+  };
+}
+
+/**
+ * Dispatched when the playlists are loaded by the request saga
+ *
+ * @param  {array} playlists The playlists data
+ *
+ * @return {object}      An action object with a type of LOAD_PLAYLISTS_SUCCESS passing the playlists
+ */
+export function playlistsLoaded(playlists) {
+  return {
+    type: LOAD_PLAYLISTS_SUCCESS,
+    playlists,
+  };
+}
+
+/**
+ * Dispatched when loading the playlists fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of LOAD_PLAYLISTS_ERROR passing the error
+ */
+export function playlistsLoadingError(error) {
+  return {
+    type: LOAD_PLAYLISTS_ERROR,
     error,
   };
 }

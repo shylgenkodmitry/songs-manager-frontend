@@ -23,6 +23,11 @@ const makeSelectSongs = () => createSelector(
   (globalState) => globalState.getIn(['data', 'songs'])
 );
 
+const makeSelectPlaylists = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.getIn(['data', 'playlists'])
+);
+
 const makeSelectLocation = () => createSelector(
   selectRoute,
   (routeState) => routeState.get('location').toJS()
@@ -33,5 +38,6 @@ export {
   makeSelectLoading,
   makeSelectError,
   makeSelectSongs,
+  makeSelectPlaylists,
   makeSelectLocation,
 };

@@ -16,6 +16,9 @@ import {
   LOAD_SONGS_SUCCESS,
   LOAD_SONGS,
   LOAD_SONGS_ERROR,
+  LOAD_PLAYLISTS_SUCCESS,
+  LOAD_PLAYLISTS,
+  LOAD_PLAYLISTS_ERROR,
 } from './constants';
 
 // The initial state of the App
@@ -24,6 +27,7 @@ const initialState = fromJS({
   error: false,
   data: {
     songs: false,
+    playlists: false,
   },
 });
 
@@ -39,6 +43,19 @@ function appReducer(state = initialState, action) {
         .setIn(['data', 'songs'], action.songs)
         .set('loading', false);
     case LOAD_SONGS_ERROR:
+      return state
+        .set('error', action.error)
+        .set('loading', false);
+    case LOAD_PLAYLISTS:
+      return state
+        .set('loading', true)
+        .set('error', false)
+        .setIn(['data', 'playlists'], false);
+    case LOAD_PLAYLISTS_SUCCESS:
+      return state
+        .setIn(['data', 'playlists'], action.playlists)
+        .set('loading', false);
+    case LOAD_PLAYLISTS_ERROR:
       return state
         .set('error', action.error)
         .set('loading', false);

@@ -13,6 +13,7 @@ import { Switch, Route } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 
 import HomePage from 'containers/HomePage/Loadable';
+import PlaylistsPage from 'containers/PlaylistsPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -38,7 +39,7 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        {/* <Route path="/playlists" component={PlaylistsPage} /> */}
+        <Route exact path="/playlists" component={PlaylistsPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />

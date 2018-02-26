@@ -13,4 +13,7 @@ export const API_ROOT = 'http://localhost:9000';
 export const LOAD_SONGS = 'boilerplate/App/LOAD_SONGS';
 export const LOAD_SONGS_SUCCESS = 'boilerplate/App/LOAD_SONGS_SUCCESS';
 export const LOAD_SONGS_ERROR = 'boilerplate/App/LOAD_SONGS_ERROR';
+export const LOAD_PLAYLISTS = 'boilerplate/App/LOAD_PLAYLISTS';
+export const LOAD_PLAYLISTS_SUCCESS = 'boilerplate/App/LOAD_PLAYLISTS_SUCCESS';
+export const LOAD_PLAYLISTS_ERROR = 'boilerplate/App/LOAD_PLAYLISTS_ERROR';
 export const DEFAULT_LOCALE = 'en';
